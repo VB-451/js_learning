@@ -1,17 +1,14 @@
 const sumInputNumbers = () =>{
-  let num = [];
+  let num = [0];
   let result = 1;
   while(result !== null){
       result = prompt("Enter your value:");
       if(!isFinite(result) || !result){
         break;
       }
-      num.push(result);
+      num.push(Number(result));
   }
-  let sum = 0;
-  for (let item of num){
-    sum += item*1;
-  }
+  let sum = num.reduce((acc, value) => acc + value);
   alert(sum);
 }
 sumInputNumbers()
