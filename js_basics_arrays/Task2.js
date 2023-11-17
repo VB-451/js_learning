@@ -9,19 +9,7 @@ const lessThanFive = (arr) => {
 }
 
 const minMaxIndex = (arr) =>{
-    let min = arr[0];
-    let max = arr[0];
-    for (let item of arr){
-        if (item < min){
-            min=item
-        };
-        if (item > max){
-             max=item;
-        }
-    }
-    let minIndex = arr.findIndex(item => item === min);
-    let maxIndex = arr.findIndex(item => item === max);
-    return [minIndex, maxIndex];
+    return [arr.indexOf(Math.min.apply(null, arr)), arr.indexOf(Math.max.apply(null, arr))];
 }
 
 const reverseSort = (arr) =>{
@@ -29,12 +17,8 @@ const reverseSort = (arr) =>{
 }
 
 const lessThanAverage = (arr) =>{
-    let average = 0;
-    let sum = 0;
-    for (let item of arr){
-        sum += item;
-    }
-    average = sum / arr.length;
+    let sum = arr.reduce((acc, value) => acc + value)
+    let average = sum / arr.length;
     for (let item of arr){
         if (item < average){
             console.log(item);
