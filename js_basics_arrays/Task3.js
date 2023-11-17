@@ -2,11 +2,7 @@ let styles = ["Джаз", "Блюз"];
 
 styles.push("Рок-н-ролл");
 
-if (styles.length % 2 !== 0){
-    styles.splice((styles.length / 2) - 0.5, 1, "«Классика»");
-} else {
-    styles.splice((styles.length / 2), 0, "«Классика»");
-}
+styles.fill("«Классика»", styles.length / 2, styles.length / 2 + 1)
 
 console.log(styles.shift());
 
