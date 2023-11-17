@@ -13,7 +13,7 @@ for (key in arr){
 
 //for of
 for (item of arr){
-    console.log(arr[item-1]); //-1 for it to start from the first element
+    console.log(item); //-1 for it to start from the first element
 }
 
 //forEach
