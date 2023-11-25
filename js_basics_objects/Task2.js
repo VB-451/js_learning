@@ -4,8 +4,10 @@ let salaries = {
     Pete: 130
 }
 
-let sum = 0;
+//option 1
+let sum = Object.values(salaries).reduce((acc, value) => acc + value);
 
+//option 2
 for (let key in salaries){
     sum += salaries[key];
 }
