@@ -1,4 +1,4 @@
-let person1 = {
+const person1 = {
     name: `Person1`,
 	age: 123,
 	salary: 1542.33,
@@ -8,7 +8,7 @@ let person1 = {
     },
 address: `Moldova`
 }
-let person2 = {
+const person2 = {
     name: `Person2`,
 	age: 12,
 	salary: 1542.33,
