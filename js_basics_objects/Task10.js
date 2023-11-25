@@ -1,4 +1,4 @@
-person1 = {
+let person1 = {
     name: `Person1`,
 	age: 123,
 	salary: 1542.33,
@@ -8,7 +8,7 @@ person1 = {
     },
 address: `Moldova`
 }
-person2 = {
+let person2 = {
     name: `Person2`,
 	age: 12,
 	salary: 1542.33,
