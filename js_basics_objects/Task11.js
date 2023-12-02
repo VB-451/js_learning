@@ -58,7 +58,7 @@ const reverseAvrSort = (arr) =>{
 const moreThanAvg = (arr) =>{
     const averages = arr.map(item => average(item.marks));
     const averagePerAll = average(averages);
-    for (let item of arr){
+    for (item of arr){
         if (average(item.marks) > averagePerAll){
             console.log(item.name, average(item.marks));    
         }
