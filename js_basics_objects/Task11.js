@@ -1,4 +1,4 @@
-let students = [
+const students = [
     {
         name: 'First',
         marks: [3, 7, 2, 9]
@@ -33,7 +33,7 @@ const averageFor = (arr) =>{
 
 //2
 const averageBelowFive = (arr) =>{
-    for (let item of arr){
+    for (item of arr){
         if (average(item.marks) < 5){
             console.log(item.name);
         }
@@ -42,12 +42,9 @@ const averageBelowFive = (arr) =>{
 
 //3
 const minMaxAverage = (arr) =>{
-    let averages = [];
-    for (let item of arr){
-        averages.push(average(item.marks));
-    }
-    let minAvrInd = averages.indexOf(Math.min.apply(null, averages));
-    let maxAvrInd = averages.indexOf(Math.max.apply(null, averages));
+    const averages = arr.map(item => average(item.marks));
+    const minAvrInd = averages.indexOf(Math.min(...averages));
+    const maxAvrInd = averages.indexOf(Math.max(...averages));
     console.log(arr[minAvrInd].name, averages[minAvrInd]);
     console.log(arr[maxAvrInd].name, averages[maxAvrInd]);
 }
@@ -59,12 +56,10 @@ const reverseAvrSort = (arr) =>{
 
 //5
 const moreThanAvg = (arr) =>{
-    let averages = [];
+    const averages = arr.map(item => average(item.marks));
+    const averagePerAll = average(averages);
     for (let item of arr){
-        averages.push(average(item.marks));
-    }
-    for (let item of arr){
-        if (average(item.marks) > average(averages)){
+        if (average(item.marks) > averagePerAll){
             console.log(item.name, average(item.marks));    
         }
     }    
