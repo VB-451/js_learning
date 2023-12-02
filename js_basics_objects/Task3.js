@@ -5,7 +5,7 @@ let menu = {
 };
 
 const multiplyNumeric = (obj) => {
-    for (let key in obj){
+    for (const key in obj){ //for of doesn't work with objects
         if (typeof obj[key] === "number"){
             obj[key] *= 2;
         }
