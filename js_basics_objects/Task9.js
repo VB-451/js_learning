@@ -8,10 +8,11 @@ const weekDays = {
 	'Duminica': 'Su'
 }
 let interchange = (obj) =>{
-    let changedObject = {};
-    for (let key in obj){
-        changedObject[obj[key]] = key;    
+    const objEntries = Object.entries(obj);
+    let resultObject ={};
+    for (const item of objEntries){
+        resultObject[item[1]] = item[0];
     }
-    return changedObject;
+    return resultObject;
 }
 console.log(interchange(weekDays));

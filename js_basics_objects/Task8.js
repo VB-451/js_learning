@@ -7,12 +7,12 @@ const weekDays = {
     'Sa': 'Суббота',
     'Su': 'Воскресенье'
 }
-const roumanian = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Simbata', 'Duminica'];
+const translationsRom = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Simbata', 'Duminica'];
 const translate = (obj) => {
-    let ind = 0;
-    for (let key in obj){
-        obj[key] = roumanian[ind];
-        ind++;
+    let index = 0;
+    for (const key in obj){
+        obj[key] = translationsRom[index];
+        index++;
     }
 }
 translate(weekDays)

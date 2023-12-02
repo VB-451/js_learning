@@ -7,22 +7,22 @@ let person = {
 		email: 'email@domain.com'
     },
     address: `Moldova`,
-    get getName(){
+    get Name(){
         return this.name;
     },
-    get getAge(){
+    get Age(){
         return this.age;
     },
-    get getSalary(){
+    get Salary(){
         return this.salary;
     },
-    get getPhone(){
+    get Phone(){
         return this.contacts.phone;
     },
-    get getEmail(){
+    get Email(){
         return this.contacts.email;
     },
-    get getAddress(){
+    get Address(){
         return this.address;
     }
 }
