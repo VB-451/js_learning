@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mainDiv" style="display: flex; justify-content: center; align-items: center; height: 500px; flex-direction: column;">
+        <label for="daysInput">Number of days:</label>
+        <input type="number" id="daysInput" min="0" max="32" value="0">
+        <label for="hoursInput">Number of hours:</label>
+        <input type="number" id="hoursInput" min="0" max="24" value="0">
+        <label for="minutesInput">Number of minutes:</label>
+        <input type="number" id="minutesInput" min="0" max="60" value="0">
+        <button id="startButton" style="margin-top: 10px;">Start</button>
+        <div style="margin-top: 20px; display:flex; flex-direction: row;">  
+            <p style="margin-right: 5px;">Time remaining:</p>
+            <p id="days" style="margin-right: 5px;">days</p>
+            <p id="hours" style="margin-right: 5px;" >hours</p>
+            <p id="minutes">minutes</p>
+        </div>
+    </div>
+    <script>
+        let timeLeft = 0;
+        let timerInterval;
+        const updateRemainingTime = () =>{
+            document.getElementById("days").innerHTML = Math.floor(timeLeft / (3600 * 24)) + " days";
+            document.getElementById("hours").innerHTML = Math.floor((timeLeft % (3600 * 24)) / 3600) + " hours";
+            document.getElementById("minutes").innerHTML = Math.floor((timeLeft % 3600) / 60) + " minutes";
+            timeLeft -= 1; 
+            if (!timeLeft){
+                alert("Время пришло");
+                clearInterval(timerInterval);
+            }
+        }
+        const TimerOn = () =>{
+            const daysInput = document.getElementById("daysInput").value * 24 * 3600;
+            const hoursInput = document.getElementById("hoursInput").value * 3600
+            const minutesInput = document.getElementById("minutesInput").value * 60
+            timeLeft += daysInput + hoursInput + minutesInput;
+            if (!timeLeft){
+                alert("Вы должны заполнить хотя бы один из инпутов")
+            } else{
+                timerInterval = setInterval(updateRemainingTime, 1000);    
+            }
+        }
+        document.getElementById("startButton").onclick = TimerOn;    
+    </script>
+</body>
+</html>
