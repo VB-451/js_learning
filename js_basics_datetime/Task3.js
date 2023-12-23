@@ -1,7 +1,5 @@
-const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
-
 const month_name = (date) =>{
-    return monthNames[date.getMonth()];    
+    return date.toLocaleString('default', {month: 'long'} )   
 }
 
 console.log(month_name(new Date("10/11/2009")));
