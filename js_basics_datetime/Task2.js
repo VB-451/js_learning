@@ -1,6 +1,6 @@
 const getDaysInMonth = (month, year) =>{
-    let returndate = new Date(year, month, 0);
-    return returndate.getDate();
+    const date = new Date(year, month, 0);
+    return date.getDate();
 }
 console.log(getDaysInMonth(1, 2012));
 console.log(getDaysInMonth(2, 2012));
