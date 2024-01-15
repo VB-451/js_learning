@@ -6,7 +6,7 @@ for (let i = 0; i < size; i++) {
     matrix[i] = new Array(size).fill(null);
 }
 
-const diagonal = (i, j) =>{
+const fillDiagonally = (i, j) =>{
     while(i < size  && j < size){
         matrix[i][j] = value;
         value++;
@@ -15,10 +15,10 @@ const diagonal = (i, j) =>{
     }
 }
 
-diagonal(0,0);
+fillDiagonally(0,0);
 for (let i = 1; i < size; i++){
-    diagonal(0, i);
-    diagonal(i, 0);
+    fillDiagonally(0, i);
+    fillDiagonally(i, 0);
 }
 
 console.log(matrix);
