@@ -10,8 +10,8 @@ const showNotification = (options) =>{
 }
 
 showNotification({
-    top: 10, // 10px от верхней границы окна (по умолчанию 0px)
-    right: 10, // 10px от правого края окна (по умолчанию 0px)
-    message: "Hello!", // HTML-уведомление
+    top: 10,
+    right: 10,
+    message: "Hello!",
 });
 
