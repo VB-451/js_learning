@@ -83,11 +83,13 @@ const birthdateElement = new FormElement("text", "birthdate", "Дата рожд
 const button = new FormElement("button", "submit", "Сохранить");
 
 arrayOfInputs.forEach((item) => {
-    const errorMessage = document.createElement("div");
     if (item.type !== "button"){
+        const errorMessage = document.createElement("div");
         errorMessage.innerHTML = `Please enter a valid ${item.id}`;
         errorMessage.style.color = "transparent";
+        mainForm.append(item.create(), errorMessage);
+    } else{
+        mainForm.appendChild(item.create());
     }
-    mainForm.append(item.create(), errorMessage);
 });
 
