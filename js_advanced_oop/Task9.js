@@ -5,21 +5,27 @@ class FormElement {
         this.placeholder = placeholder;
         this.value = value;
         this.rules = rules;
+        arrayOfInputs.push(this);
     }
     
-    create(parentFormSelector){
-        const parentForm = document.querySelector(parentFormSelector);
+    create(){
         if (this.type === "button"){
             const buttonElement = document.createElement("button");
             buttonElement.setAttribute("id", this.id);
             buttonElement.innerHTML = this.placeholder;
-            buttonElement.onclick = verifyInputs;
-            parentForm.appendChild(buttonElement);
+            buttonElement.onclick = () =>{
+                let isValidated = true;
+                for (let item of arrayOfInputs){
+                    if(!item.validate()){
+                        isValidated = false;
+                        break;
+                    }
+                }
+                alert(isValidated ? "Данные сохранены" : "Ошибка валидации")
+            }
+            return buttonElement;
         } else{
             const inputElement = document.createElement("input");
-            const errorMessage = document.createElement("div");
-            errorMessage.innerHTML = `Please enter a valid ${this.id}`;
-            errorMessage.style.color = "transparent";
             this.actualValue = this.value;
             inputElement.setAttribute("type", this.type);
             inputElement.setAttribute("id", this.id);
@@ -31,14 +37,13 @@ class FormElement {
                 this.actualValue = inputElement.value;
                 if(!this.validate()){
                     inputElement.style.border = "2px solid #cc0033";
-                    errorMessage.style.color = "red"
+                    inputElement.nextElementSibling.style.color = "red"
                 } else{
                     inputElement.style.border = "";
-                    errorMessage.style.color = "transparent"
+                    inputElement.nextElementSibling.style.color = "transparent"
                 }
             }
-            parentForm.append(inputElement, errorMessage);
-            arrayOfInputs.push(this);
+            return inputElement;
         }
         
     }
@@ -48,6 +53,9 @@ class FormElement {
     }
 
     validate(){
+        if (this.type === "button"){
+            return true;
+        }
         switch(this.id){
             case "name" :{
                 return /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/.test(this.actualValue);
@@ -65,32 +73,21 @@ class FormElement {
     }
 }
 
+const mainForm = document.getElementById("testForm");
 let arrayOfInputs = [];
-const verifyInputs = () =>{
-    for (item of arrayOfInputs){
-        if(!item.validate()){
-            alert("Ошибка валидации");
-            return false;
-        }
-    }
-    alert("Данные сохранены")
-    return true;
-}
-
-
 
 const nameElement = new FormElement("text", "name", "Имя", "John", ["required"]);
-nameElement.create("#testForm");
-
-
 const emailElement = new FormElement("text", "email", "Е-мэйл", "mail@mail.com", ["required", "mail"]);
-emailElement.create("#testForm");
-
-const ageElement = new FormElement("text", "age", "Возраст", "62", ["required", "min:10"]);
-ageElement.create("#testForm");
-
+const ageElement = new FormElement("text", "age", "Возраст", "25", ["required", "min:10"]);
 const birthdateElement = new FormElement("text", "birthdate", "Дата рождения", "01.01.1970", ["required", "date"]);
-birthdateElement.create("#testForm");
-
 const button = new FormElement("button", "submit", "Сохранить");
-button.create("#testForm");
+
+arrayOfInputs.forEach((item) => {
+    const errorMessage = document.createElement("div");
+    if (item.type !== "button"){
+        errorMessage.innerHTML = `Please enter a valid ${item.id}`;
+        errorMessage.style.color = "transparent";
+    }
+    mainForm.append(item.create(), errorMessage);
+});
+
